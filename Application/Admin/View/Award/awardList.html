@@ -30,32 +30,32 @@
 
     <div class="rightinfo">
 
-        <div class="tools">
+        <!--div class="tools">
 
             <ul class="toolbar">
-                <li><a href="{:U('index/addUser')}" target="_blank"><span><img src="__IMG__/t01.png" /></span>添加</a></li>
-                <!--li><span><img src="__IMG__/t04.png" /></span>统计</li-->
+                <li><a href="{:U('index/addUser')}" target="_blank"><span><img src="__IMG__/t01.png" /></span></a></li>
+                <li><span><img src="__IMG__/t04.png" /></span>统计</li>
             </ul>
 
 
             <ul class="toolbar1">
-                <!--li><span><img src="__IMG__/t05.png" /></span>设置</li-->
+                <li><span><img src="__IMG__/t05.png" /></span>设置</li>
             </ul>
 
-        </div>
+        </div-->
 
 
         <table class="tablelist">
             <thead>
             <tr>
-                <th>UserID<i class="sort"><img src="__IMG__/px.gif" /></i></th>
+                <th>RecordId</th>
+                <th>UserID</th>
                 <th>用户姓名</th>
                 <th>用户手机号</th>
-                <th>已奖励金额</th>
-                <th>待励金额</th>
-                <th>公司</th>
-                <th>注册时间</th>
-                <th>最后登录时间</th>
+                <th>奖励金额</th>
+                <th>项目描述</th>
+                <th>记录创建时间</th>
+                <th>记录更新时间</th>
                 <th>状态</th>
                 <th>操作</th>
             </tr>
@@ -63,24 +63,22 @@
             <tbody>
             <volist name="_list" id="vo">
                 <tr>
+                    <td>{$vo.record_id}</td>
                     <td>{$vo.user_id}</td>
-                    <td>{$vo.username}</td>
-                    <td>{$vo.mobile}</td>
-                    <td>{$vo.award_total_money|number_format=###,2}</td>
-                    <td>{$vo.except_award_money|number_format=###,2}</td>
-                    <td>{$vo.company}</td>
-                    <td>{$vo.reg_time|date='Y-m-d H:i',###}</td>
-                    <td>{$vo.last_ligin_time|date='Y-m-d H:i',###}</td>
-                    <td><eq name="vo.status" value="-1">禁用</eq><eq name="vo.status" value="0">启用</eq></td>
+                    <td>{$vo.user_id|get_userinfo=###,username}</td>
+                    <td>{$vo.user_id|get_userinfo=###,mobile}</td>
+                    <td>{$vo.money|number_format=###,2}</td>
+                    <td>{$vo.content|msubstr=###,0,10}</td>
+                    <td>{$vo.create_time|date='Y-m-d H:i',###}</td>
+                    <td>{$vo.update_time|date='Y-m-d H:i',###}</td>
+                    <td><eq name="vo.status" value="0">未发放</eq><eq name="vo.status" value="1">已发放</eq></td>
                     <td>
-                        <a href="{:U('index/viewUser',array('userid'=>$vo['user_id']))}" class="tablelink">查看</a>
-                        <eq name="vo.status" value="-1">
-                            <a href="{:U('index/enableUser',array('userid'=>$vo['user_id'],'p'=>$p))}" class="tablelink">启用</a>
+                        <eq name="vo.status" value="1">
+                            <a href="{:U('award/awardView',array('recordId'=>$vo['record_id'],'p'=>$p))}" class="tablelink">查看</a>
                         </eq>
                         <eq name="vo.status" value="0">
-                            <a href="{:U('index/forbiddenUser',array('userid'=>$vo['user_id'],'p'=>$p))}" class="tablelink">禁用</a>
+                            <a href="{:U('award/awardView',array('recordId'=>$vo['record_id'],'p'=>$p))}" class="tablelink">发放</a>
                         </eq>
-                        <a href="{:U('Award/awardUser',array('userid'=>$vo['user_id'],'p'=>$p))}" class="tablelink">奖励</a>
                     </td>
                 </tr>
             </volist>

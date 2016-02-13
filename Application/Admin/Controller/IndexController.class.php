@@ -3,11 +3,14 @@ namespace Admin\Controller;
 
 class IndexController extends AdminController {
     public function userList(){
-
+        $p = max(I('get.p'),1);
         $data = array();
 
         $where = array();
-        $data['_list'] = $this->lists('User');
+        $where['status'] = array('in',array(-1,0));
+        $data['_list'] = $this->lists('User',$where);
+
+        $data['p'] = $p;
 
         $this->assign($data);
         $this->assign('meta_title','用户列表');
@@ -58,7 +61,6 @@ class IndexController extends AdminController {
     public function editUser(){
         if(IS_POST){
             $postData = I('post.');
-
             if(!empty($postData['password'])){
                 $postData['password'] = encrypt_password($postData['password']);
             }else{
@@ -77,4 +79,55 @@ class IndexController extends AdminController {
             }
         }
     }
+    public function forbiddenUser(){
+        $p = I('get.p');
+        $userId = I('get.userid');
+        $where =  array();
+        $where['user_id'] = $userId;
+        $where['status'] = 0;
+        $count = M('User')->where($where)->count();
+        if($count!=1){
+            $this->error('参数错误','',3);
+        }
+
+        $where = array();
+        $where['user_id'] = $userId;
+        $where['status'] = 0;
+
+        $data = array();
+        $data['status'] = -1;
+        $res = M('User')->where($where)->save($data);
+        if($res!==false){
+            $this->success('禁用用户成功',U('index/userList',array('p'=>$p)),3);
+        }else{
+            $this->error('操作失败','',3);
+        }
+    }
+
+    public function enableUser(){
+        $p = I('get.p');
+        $userId = I('get.userid');
+        $where =  array();
+        $where['user_id'] = $userId;
+        $where['status'] = -1;
+        $count = M('User')->where($where)->count();
+        if($count!=1){
+            $this->error('参数错误','',3);
+        }
+
+        $where = array();
+        $where['user_id'] = $userId;
+        $where['status'] = -1;
+
+        $data = array();
+        $data['status'] = 0;
+        $res = M('User')->where($where)->save($data);
+        if($res!==false){
+            $this->success('启用用户成功',U('index/userList',array('p'=>$p)),3);
+        }else{
+            $this->error('操作失败','',3);
+        }
+    }
+
+
 }
