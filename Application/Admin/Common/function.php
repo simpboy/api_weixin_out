@@ -16,3 +16,7 @@ function is_login(){
 		return $userId;
 	}
 }
+
+function encrypt_password($password=''){
+	return md5($password);
+}
