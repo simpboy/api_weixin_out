@@ -1,0 +1,38 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="reg">
+        <form action="{:U('User/reg')}" method="post">
+            <div class="weixinBody">
+                <div class="weixinBodybox sjyhm">
+                    <div class="xgline">
+                        <span class="xgicon">名字(必填)</span>
+                        <input type="text" name="username" placeholder="请输入您的真实姓名">
+                    </div>
+                </div>
+                <div class="weixinBodybox renderClass">
+                    <div class="xgline">
+                        <span class="xgicon">手机(必填)</span>
+                        <input type="text" name="mobile" placeholder="请输入您的11位手机号">
+                    </div>
+                </div>
+                <div class="weixinBodybox renderClass">
+                    <div class="xgline">
+                        <span class="xgicon">推荐人</span>
+                        <input type="text" name="referer_username" placeholder="请输入推荐人的真实姓名">
+                    </div>
+                </div>
+                <div class="weixinBodybox renderClass">
+                    <div class="xgline">
+                        <span class="xgicon">推荐人-手机号码</span>
+                        <input type="text" name="referer_mobile" placeholder="请输入推荐人的11位手机号">
+                    </div>
+                </div>
+            </div>
+            <div class="xgfoot">
+                <div class="submitBtn">
+                    <input type="submit" value="注册">
+                </div>
+            </div>
+        </form>
+    </div>
+</block>

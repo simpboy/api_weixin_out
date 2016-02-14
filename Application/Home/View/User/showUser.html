@@ -1,0 +1,81 @@
+<extend name="Public/base"/>
+<block name="body">
+	<div class="reg">
+        <div class="weixinBody">
+            <div class="weixinBodybox sjyhm">
+                <div class="xgline">
+                    <span class="xgicon">名字</span>
+                    <span class="fright">{$username}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">手机</span>
+					<span class="fright">{$mobile}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">推荐人</span>
+                    <span class="fright">{$referer_username}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">推荐人-手机号码</span>
+                    <span class="fright">{$referer_mobile}</span>
+                </div>
+            </div>
+        </div>
+        <!-- 分割 -->
+		<div class="slice"></div>
+		<div class="weixinBody2">
+            <div class="weixinBodybox sjyhm">
+                <div class="xgline">
+                    <span class="xgicon">累计已发奖金</span>
+                    <span class="fright">{$award_total_money|number_format=###,2}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox sjyhm">
+                <div class="xgline">
+                    <span class="xgicon">累计未发奖金</span>
+                    <span class="fright">{$except_award_money|number_format=###,2}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">项目数量</span>
+					<span class="fright">{$projectNumber}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline" style="margin-bottom:5px;">
+                    <span class="">项目描述</span>
+                    <div  class="description">{$showContent}</div>
+                </div>
+            </div>
+        </div>
+		<!-- 分割 -->
+		<div class="slice"></div>
+		<div class="weixinBody2">
+            <div class="weixinBodybox sjyhm">
+                <div class="xgline">
+                    <span class="xgicon">性别</span>
+                    <span class="fright"><eq name="gender" value="1">男</eq><eq name="gender" value="0">女</eq></span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">公司</span>
+					<span class="fright">{$company}</span>
+                </div>
+            </div>
+            <div class="weixinBodybox renderClass">
+               <div class="xgline">
+                    <span class="xgicon">个性签名</span>
+                    <span class="fright">{$self_description}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

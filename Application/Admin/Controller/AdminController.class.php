@@ -16,6 +16,10 @@ class AdminController extends Controller {
 	 */
 	protected function _initialize(){
 		$userId = is_login();
+		if(!in_array($userId,C('ADMIN_USER_ID'))&&ACTION_NAME!='userLogin'){
+			session(null);
+			$this->error('您不是管理员,无权访问该页面',U('/Admin/Index/userLogin'));
+		}
 	}
 	/**
 	 * 对数据表中的单行或多行记录执行修改 GET参数id为数字或逗号分隔的数字

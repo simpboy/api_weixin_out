@@ -129,5 +129,37 @@ class IndexController extends AdminController {
         }
     }
 
+    public function userLogin(){
+        $sessionUserId = session('user_id');
+        if(is_login()&&in_array($sessionUserId,C('ADMIN_USER_ID'))){
+            $this->success('你已经登录',U('Index/userList'));
+            exit();
+        }
+        if(IS_POST){
+            $postData = I("post.");
+            $where = array();
+            if(preg_match('/^1\d{10}$/',$postData['username'])){
+                $where['mobile'] = $postData['username'];
+            }else{
+                $where['username'] = $postData['username'];
+            }
+            $where['password'] = encrypt_password($postData['password']);
 
+            $userInfo = M('user')->where($where)->find();
+            if(!in_array($userInfo['user_id'],C('ADMIN_USER_ID'))||empty($userInfo)){
+                $this->error('不能成功登录');
+            }
+            session('user_id',$userInfo['user_id']);
+            session('username',$userInfo['username']);
+            session('mobile',$userInfo['mobile']);
+            $this->success('登录成功!',U('Index/userList'));
+            exit();
+
+        }
+        $this->display('userLogin');
+    }
+    public function userLogout(){
+        session(null);
+        $this->success('您已经成功退出登录',U('Index/userLogin'));
+    }
 }

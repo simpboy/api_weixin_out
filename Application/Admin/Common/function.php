@@ -2,20 +2,6 @@
 /**
  * @autor: wangxl
  */
-
-/**
- * 检测用户是否登录
- * @return integer 0-未登录，大于0-当前登录用户ID
- */
-function is_login(){
-	$userId = session('user_id');
-	if (empty($userId)) {
-		return 0;
-	} else {
-		return $userId;
-	}
-}
-
 /**
  * 加密密码
  * @param string $password
@@ -40,9 +26,6 @@ function get_userinfo($user_id=0,$field=''){
 	}
 	return $userInfo;
 }
-/**
- * 截取中文，不乱码
- */
 /**
  * 截取中文字符串
  */

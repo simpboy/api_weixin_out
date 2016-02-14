@@ -29,8 +29,6 @@
                     }else{
                         $parent.addClass("open").find('.sub-menus').show();
                     }
-
-
                 }
             });
 
@@ -70,7 +68,7 @@
 <body>
     <div id="container">
         <div id="top" class="toptop">
-            <div class="topleft">
+            <div class="topleft" style="color:#fff;">
                 项目推荐管理系统
             </div>
 
@@ -85,103 +83,37 @@
 
             <div class="topright">
                 <ul>
-                    <li><span><img src="__IMG__/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
-                    <li><a href="#">关于</a></li>
-                    <li><a href="login.html" target="_parent">退出</a></li>
+                    <li><span><img src="__IMG__/help.png" title="帮助"  class="helpimg"/></span><a href="javascript:void(0);">帮助</a></li>
+                    <!--li><a href="#">关于</a></li-->
+                    <li><a href="{:U('Index/userLogout')}" target="_parent">退出</a></li>
                 </ul>
 
                 <div class="user">
-                    <span>admin</span>
-                    <i>消息</i>
-                    <b>5</b>
+                    <span>您好,{:session('username')}</span>
+                    <!--i>消息</i>
+                    <b>5</b-->
                 </div>
 
             </div>
         </div>
         <div id="bottom">
             <div id="left" style="float:left; width:187px;">
-                <div class="lefttop"><span></span>通讯录</div>
+                <div class="lefttop"><span></span>管理菜单</div>
 
                 <dl class="leftmenu">
-
-                    <dd>
-                        <div class="title">
-                            <span><img src="__IMG__/leftico01.png" /></span>管理信息
-                        </div>
-                        <ul class="menuson">
-
-                            <li>
-                                <div class="header">
-                                    <cite></cite>
-                                    <a href="index.html" target="rightFrame">首页模版</a>
-                                    <i></i>
-                                </div>
-                                <ul class="sub-menus">
-                                    <li><a href="javascript:;">文件管理</a></li>
-                                    <li><a href="javascript:;">模型信息配置</a></li>
-                                    <li><a href="javascript:;">基本内容</a></li>
-                                    <li><a href="javascript:;">自定义</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <div class="header">
-                                    <cite></cite>
-                                    <a href="right.html" target="rightFrame">数据列表</a>
-                                    <i></i>
-                                </div>
-                                <ul class="sub-menus">
-                                    <li><a href="javascript:;">文件数据</a></li>
-                                    <li><a href="javascript:;">学生数据列表</a></li>
-                                    <li><a href="javascript:;">我的数据列表</a></li>
-                                    <li><a href="javascript:;">自定义</a></li>
-                                </ul>
-                            </li>
-
-                            <li class="active"><cite></cite><a href="right.html" target="rightFrame">数据列表</a><i></i></li>
-                            <li><cite></cite><a href="imgtable.html" target="rightFrame">图片数据表</a><i></i></li>
-                            <li><cite></cite><a href="form.html" target="rightFrame">添加编辑</a><i></i></li>
-                            <li><cite></cite><a href="imglist.html" target="rightFrame">图片列表</a><i></i></li>
-                            <li><cite></cite><a href="imglist1.html" target="rightFrame">自定义</a><i></i></li>
-                            <li><cite></cite><a href="tools.html" target="rightFrame">常用工具</a><i></i></li>
-                            <li><cite></cite><a href="filelist.html" target="rightFrame">信息管理</a><i></i></li>
-                            <li><cite></cite><a href="tab.html" target="rightFrame">Tab页</a><i></i></li>
-                            <li><cite></cite><a href="error.html" target="rightFrame">404页面</a><i></i></li>
-                        </ul>
-                    </dd>
-
-
-                    <dd>
-                        <div class="title">
-                            <span><img src="__IMG__/leftico02.png" /></span>其他设置
-                        </div>
-                        <ul class="menuson">
-                            <li><cite></cite><a href="flow.html" target="rightFrame">流程图</a><i></i></li>
-                            <li><cite></cite><a href="project.html" target="rightFrame">项目申报</a><i></i></li>
-                            <li><cite></cite><a href="search.html" target="rightFrame">档案列表显示</a><i></i></li>
-                            <li><cite></cite><a href="tech.html" target="rightFrame">技术支持</a><i></i></li>
-                        </ul>
-                    </dd>
-
-
-                    <dd><div class="title"><span><img src="__IMG__/leftico03.png" /></span>编辑器</div>
-                        <ul class="menuson">
-                            <li><cite></cite><a href="#">自定义</a><i></i></li>
-                            <li><cite></cite><a href="#">常用资料</a><i></i></li>
-                            <li><cite></cite><a href="#">信息列表</a><i></i></li>
-                            <li><cite></cite><a href="#">其他</a><i></i></li>
-                        </ul>
-                    </dd>
-
-
-                    <dd><div class="title"><span><img src="__IMG__/leftico04.png" /></span>日期管理</div>
-                        <ul class="menuson">
-                            <li><cite></cite><a href="#">自定义</a><i></i></li>
-                            <li><cite></cite><a href="#">常用资料</a><i></i></li>
-                            <li><cite></cite><a href="#">信息列表</a><i></i></li>
-                            <li><cite></cite><a href="#">其他</a><i></i></li>
-                        </ul>
-                    </dd>
+                    <?php $menuList = C('MENU_LIST');?>
+                    <volist name="menuList" id="vo" key="k">
+                        <dd>
+                            <div class="title">
+                                <span><img src="__IMG__/leftico0{$k}.png" /></span>{$vo.menuName}
+                            </div>
+                            <ul class="menuson" <if condition="strtolower(CONTROLLER_NAME) eq $vo['controllerName']" >class="currentMenu" </if> >
+                                <volist name="vo['subMenu']" id="voo">
+                                    <li <if condition="strtolower(CONTROLLER_NAME) eq $voo['controllerName']" >class="active" </if> ><cite></cite><a href="{:U($voo['url'])}">{$voo.menuName}</a><i></i></li>
+                                </volist>
+                            </ul>
+                        </dd>
+                    </volist>
                 </dl>
             </div>
             <div id="right" style="float:left; width:1013px;">
