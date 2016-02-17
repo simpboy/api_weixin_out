@@ -17,13 +17,13 @@
             <div class="weixinBodybox renderClass">
                <div class="xgline">
                     <span class="xgicon">推荐人</span>
-                    <span class="fright">{$referer_username}</span>
+                    <span class="fright"><empty name="referer_username">无<else />{$referer_username}</empty></span>
                 </div>
             </div>
             <div class="weixinBodybox renderClass">
                <div class="xgline">
                     <span class="xgicon">推荐人-手机号码</span>
-                    <span class="fright">{$referer_mobile}</span>
+                    <span class="fright"><empty name="referer_mobile">无<else />{$referer_mobile}</empty></span>
                 </div>
             </div>
         </div>
@@ -51,7 +51,7 @@
             <div class="weixinBodybox renderClass">
                <div class="xgline" style="margin-bottom:5px;">
                     <span class="">项目描述</span>
-                    <div  class="description">{$showContent}</div>
+                    <div  class="description"><empty name="showContent">您还没有推荐项目,快去推荐吧<else />{$showContent}</empty></div>
                 </div>
             </div>
         </div>
@@ -61,19 +61,35 @@
             <div class="weixinBodybox sjyhm">
                 <div class="xgline">
                     <span class="xgicon">性别</span>
-                    <span class="fright"><eq name="gender" value="1">男</eq><eq name="gender" value="0">女</eq></span>
+                    <span class="fright">
+                        <a href="{:U('Home/User/editUser')}">
+                            <eq name="gender"  value="1">男</eq><eq name="gender" value="0">女</eq>&nbsp;&gt;
+                        </a>
+                    </span>
                 </div>
             </div>
             <div class="weixinBodybox renderClass">
                <div class="xgline">
                     <span class="xgicon">公司</span>
-					<span class="fright">{$company}</span>
+					<span class="fright">
+                        <a href="{:U('Home/User/editUser')}">
+                            <empty name="company">未填写&nbsp;&gt;<else />
+                                {$company}&nbsp;&gt;
+                            </empty>
+                        </a>
+                    </span>
                 </div>
             </div>
             <div class="weixinBodybox renderClass">
                <div class="xgline">
                     <span class="xgicon">个性签名</span>
-                    <span class="fright">{$self_description}</span>
+                    <span class="fright">
+                        <a href="{:U('Home/User/editUser')}">
+                            <empty name="self_description">未填写&nbsp;&gt;<else />
+                                {$self_description}&nbsp;&gt;
+                            </empty>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>

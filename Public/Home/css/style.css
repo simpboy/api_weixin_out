@@ -37,5 +37,6 @@ input{ -webkit-tap-highlight-color:rgba(0,0,0,0);}
 .submitBtn a{ display:block; line-height:88px; text-align:center; text-decoration:none;}
 
 .fright{float:right;}
+.xgline .fright{text-align:right;}
 .slice{border-bottom:5px solid #999;}
 .description{font-size:24px; line-height:36px;}

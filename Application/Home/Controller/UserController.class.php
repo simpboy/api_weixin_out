@@ -6,16 +6,7 @@ class UserController extends Controller {
      * 快速注册
      */
     public function reg(){
-        //获取绑定的威信openid
-        $code = I('get.code'); //线上
-        if(empty($code)){
-            $url = SITE_URL.U('Home/User/reg');
-            $this->getToken($url);   //线上
-            return;
-        }
-        $userOpenid = $this->getOpenid();   //线上
 
-        cookie(md5('user_openid'), think_encrypt($userOpenid));
 
         if(IS_POST){
             $postData = I('post.');
@@ -36,12 +27,26 @@ class UserController extends Controller {
             $data['status'] = 0;
             $res = M('User')->add($data);
             if($res!==false){
-                $this->success('注册成功','',3);
+                session('user_id',$res);
+                session('username',$postData['username']);
+                session('mobile',$postData['mobile']);
+                $this->success('注册成功',U('Home/User/showUser'),3);
             }else{
                 $this->error("注册失败",'',3);
             }
             exit();
         }
+        //获取绑定的威信openid
+        $code = I('get.code'); //线上
+        if(empty($code)){
+            $url = SITE_URL.U('Home/User/reg');
+            $this->getToken($url);   //线上
+            return;
+        }
+        $userOpenid = $this->getOpenid();   //线上
+
+        cookie(md5('user_openid'), think_encrypt($userOpenid));
+
         $this->assign('title','快速注册');
         $this->display('reg');
     }
@@ -93,7 +98,7 @@ class UserController extends Controller {
     public function showUser(){
         $userId = is_login();
         if(!$userId){
-            $this->error('请先登录');
+            $this->redirect(U('User/autoLogin'));
         }
         $where = array();
         $where['user_id'] = $userId;
@@ -129,14 +134,14 @@ class UserController extends Controller {
             session('user_id',$isBangding['user_id']);
             session('username',$isBangding['username']);
             session('mobile',$isBangding['mobile']);
-            $this->success('登录成功!',U('Home/User/showUser'));
+            $this->redirect(U('Home/User/showUser'));
             exit();
         }else{
-            $this->error("您还没有绑定微信,请正常登录绑定",U('Home/User/loginBangding'));
+            $this->redirect(U('Home/User/reg'));
         }
     }
     /**
-     * 登录绑定
+     * 登录绑定,未被使用
      */
     public function loginBangding(){
         $uid = is_login();
@@ -196,5 +201,37 @@ class UserController extends Controller {
         $data['title'] = "登录绑定";
         $this->assign($data);
         $this->display("loginBangding"); //action 有大写，需要明确指定模板文件
+    }
+    public function editUser(){
+        $userId = is_login();
+        if(!$userId){
+            $this->error('您还未登录,不能进行该操作');
+        }
+        if(IS_POST){
+            $postData = I('post.');
+            $User = M('User');
+            $postData = $User->create($postData);
+            $where = array();
+            $where['user_id'] = $userId;
+
+            $data = array();
+            $data['gender'] = $postData['gender'];
+            $data['company'] = $postData['company'];
+            $data['self_description'] = $postData['self_description'];
+
+            $res = $User->where($where)->save($data);
+            if($res!==false){
+                $this->success('信息修改成功',U('Home/User/showUser'));
+            }else{
+                $this->error('信息修改失败');
+            }
+            exit();
+        }
+        $where = array();
+        $where['user_id'] = $userId;
+        $data = M('User')->where($where)->find();
+        $this->assign($data);
+        $this->assign('title','编辑用户信息');
+        $this->display('editUser');
     }
 }

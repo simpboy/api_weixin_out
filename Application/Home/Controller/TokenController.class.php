@@ -114,7 +114,7 @@ class TokenController extends Controller {
 							}else{  //已经绑定
 								$chenghu = $is_bangding['username']?$is_bangding['username']:$is_bangding['mobile'];
 
-								$content = "尊敬的".$chenghu."，您目前：\n\n你已经收到发放金额：".number_format($is_bangding['award_total_money'], 2, '.', '')."元\n待发放金额   ：".number_format($is_bangding['except_award_money'], 2, '.', '')."元\n\n个人信息详情请<a href='".SITE_URL.U('Home/User/autoLogin')."'>登录</a>查看";
+								$content = "尊敬的".$chenghu."，您目前：\n\n你已经收到发放金额：".number_format($is_bangding['award_total_money'], 2, '.', '')."元\n待发放金额   ：".number_format($is_bangding['except_award_money'], 2, '.', '')."元\n\n个人信息详情请<a href='".SITE_URL.U('Home/User/autoLogin')."'>点击查看</a>";
 							}
 						break;
 				}
