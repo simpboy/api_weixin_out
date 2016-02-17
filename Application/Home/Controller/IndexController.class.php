@@ -3,6 +3,6 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
-        $this->show('hello你好','utf-8');
+        $this->show('Hello,world!','utf-8');
     }
 }

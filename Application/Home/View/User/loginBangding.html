@@ -1,0 +1,26 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="reg">
+        <form action="{:U('User/loginBangding')}" method="post">
+            <div class="weixinBody">
+                <div class="weixinBodybox sjyhm">
+                    <div class="xgline">
+                        <span class="xgicon">登录名/手机号</span>
+                        <input type="text" name="username" placeholder="请输入您的登录名/手机号">
+                    </div>
+                </div>
+                <div class="weixinBodybox renderClass">
+                    <div class="xgline">
+                        <span class="xgicon">登录密码</span>
+                        <input type="password" name="password" placeholder="******">
+                    </div>
+                </div>
+            </div>
+            <div class="xgfoot">
+                <div class="submitBtn">
+                    <input type="submit" value="登录绑定">
+                </div>
+            </div>
+        </form>
+    </div>
+</block>

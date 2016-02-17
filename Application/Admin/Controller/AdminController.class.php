@@ -18,7 +18,7 @@ class AdminController extends Controller {
 		$userId = is_login();
 		if(!in_array($userId,C('ADMIN_USER_ID'))&&ACTION_NAME!='userLogin'){
 			session(null);
-			$this->error('您不是管理员,无权访问该页面',U('/Admin/Index/userLogin'));
+			$this->error('您不是管理员,无权访问该页面',U('Admin/Index/userLogin'));
 		}
 	}
 	/**

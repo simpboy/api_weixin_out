@@ -3,14 +3,6 @@
  * @autor: wangxl
  */
 /**
- * 加密密码
- * @param string $password
- * @return string
- */
-function encrypt_password($password=''){
-	return md5($password);
-}
-/**
  * 获取用户信息
  * 未使用缓存
  */

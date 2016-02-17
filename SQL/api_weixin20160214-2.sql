@@ -20,15 +20,15 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `money_record`;
 CREATE TABLE `money_record` (
-  `record_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'è®°å½•id',
-  `user_id` int(11) NOT NULL COMMENT 'ç”¨æˆ·id',
-  `money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT 'å¥–åŠ±é‡‘é¢',
-  `content` text COMMENT 'æè¿°',
-  `create_time` int(11) NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
-  `status` tinyint(1) NOT NULL COMMENT '0æœªæ”¯ä»˜ï¼Œ1å·²æ”¯ä»˜',
+  `record_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '记录id',
+  `user_id` int(11) NOT NULL COMMENT '用户id',
+  `money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT '奖励金额',
+  `content` text COMMENT '描述',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(1) NOT NULL COMMENT '0未支付，1已支付',
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间，发放时间',
   PRIMARY KEY (`record_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='æŒ£é’±æ˜Žç»†è¡¨';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='奖励明细表';
 
 -- ----------------------------
 -- Records of money_record
@@ -58,23 +58,23 @@ INSERT INTO `money_record` VALUES ('23', '24', '7.00', '', '1455442569', '0', '1
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ç”¨æˆ·id',
-  `username` varchar(50) NOT NULL COMMENT 'ç”¨æˆ·å',
-  `mobile` varchar(15) NOT NULL COMMENT 'ç”¨æˆ·æ‰‹æœºå·',
-  `referer_username` varchar(50) DEFAULT NULL COMMENT 'æŽ¨èäººå§“å',
-  `referer_mobile` varchar(15) DEFAULT NULL COMMENT 'æŽ¨èäººæ‰‹æœºå·',
-  `award_total_money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT 'å¥–é‡‘',
-  `gender` tinyint(1) DEFAULT NULL COMMENT 'æ€§åˆ«1ç”·ï¼Œ0å¥³',
-  `company` varchar(100) DEFAULT NULL COMMENT 'å…¬å¸',
-  `self_description` text COMMENT 'ä¸ªæ€§ç­¾å',
-  `reg_time` int(11) NOT NULL COMMENT 'æ³¨å†Œæ—¶é—´',
-  `last_login_time` int(11) DEFAULT NULL COMMENT 'æœ€åŽç™»å½•æ—¶é—´',
-  `openid` char(50) DEFAULT '',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '-1ç¦ç”¨0æ­£å¸¸',
+  `user_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户id',
+  `username` varchar(50) NOT NULL COMMENT '用户名',
+  `mobile` varchar(15) NOT NULL COMMENT '用户手机号',
+  `referer_username` varchar(50) DEFAULT NULL COMMENT '推荐人姓名',
+  `referer_mobile` varchar(15) DEFAULT NULL COMMENT '推荐人手机号',
+  `award_total_money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT '已发奖金',
+  `gender` tinyint(1) DEFAULT NULL COMMENT '性别1男，0女',
+  `company` varchar(100) DEFAULT NULL COMMENT '公司',
+  `self_description` text COMMENT '个性签名',
+  `reg_time` int(11) NOT NULL COMMENT '注册时间',
+  `last_login_time` int(11) DEFAULT NULL COMMENT '最后登录时间',
+  `openid` char(50) DEFAULT '微信openid',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '-1禁用0正常',
   `password` char(32) DEFAULT NULL,
-  `except_award_money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT 'å¾…å‘æ”¾å¥–é‡‘',
+  `except_award_money` decimal(20,2) NOT NULL DEFAULT '0.00' COMMENT '未发奖励',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='ç”¨æˆ·è¡¨';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of user

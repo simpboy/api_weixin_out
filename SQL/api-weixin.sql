@@ -27,7 +27,7 @@ CREATE TABLE `money_record` (
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `status` tinyint(1) NOT NULL COMMENT '0未支付，1已支付',
   PRIMARY KEY (`record_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='挣钱明细表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='奖励明细表';
 
 -- ----------------------------
 -- Records of money_record
