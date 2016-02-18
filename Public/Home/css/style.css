@@ -5,10 +5,9 @@ img{ display:block;}
 li{ list-style:none; outline:none;}
 a{ text-decoration:none;}
 input{ -webkit-tap-highlight-color:rgba(0,0,0,0);}
-
 /*其他样式*/
-.weixinBody{ background:#fff; padding-left:20px; margin-top:60px; border-top:#e5e5e5 1px solid; border-bottom:#e5e5e5 1px solid;}
-.weixinBody2{ background:#fff; padding-left:20px; border-top:#e5e5e5 1px solid; border-bottom:#e5e5e5 1px solid;}
+.weixinBody{ background:#fff; padding-left:20px; margin-top:60px; border-top:#e5e5e5 1px solid; }
+.weixinBody2{ background:#fff; padding-left:20px;}
 .weixinBodybox{ border-bottom:#e5e5e5 1px solid;}
 .xgline{ margin-right:20px; overflow:hidden; font-size:20px;}
 .xgline span{ width:30%; height:98px; line-height:98px; font-size:20px;}
@@ -38,5 +37,5 @@ input{ -webkit-tap-highlight-color:rgba(0,0,0,0);}
 
 .fright{float:right;}
 .xgline .fright{text-align:right;}
-.slice{border-bottom:5px solid #999;}
+.slice{border-bottom:0px solid #e5e5e5;}
 .description{font-size:24px; line-height:36px;}
