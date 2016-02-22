@@ -106,12 +106,8 @@ class UserController extends Controller {
         $data = M('User')->where($where)->find();
 
         $moneyRecordContent = M('MoneyRecord')->where($where)->field('content')->select();
+        $data['project_description'] =  preg_replace(array('/\n/','/\r\n/'),array('<br/>','<br/>'),$data['project_description']);
         $data['projectNumber'] = count($moneyRecordContent);
-        $showContent = '';
-        foreach($moneyRecordContent as $k=>$v){
-            $showContent .= $v['content']."<br/>";
-        }
-        $data['showContent'] = $showContent;
         $this->assign($data);
         $this->assign('title','个人信息');
         $this->display('showUser');
@@ -214,6 +210,9 @@ class UserController extends Controller {
             if(!in_array($postData['field'],array('gender','company','self_description'))){
                 $this->error('非法参数');
             }
+            if(mb_strlen($postData[$field],'utf8')>20){
+                $this->error('该字段长度不允许超过20个字');
+            }
             $User = M('User');
             $postData = $User->create($postData);
             $where = array();
@@ -224,7 +223,6 @@ class UserController extends Controller {
             $res = $User->where($where)->save($data);
             if($res!==false){
                 $this->success('信息修改成功',U('Home/User/showUser'));
-//                $this->redirect(U('Home/User/showUser'));
             }else{
                 $this->error('信息修改失败');
             }

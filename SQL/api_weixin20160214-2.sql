@@ -103,3 +103,6 @@ INSERT INTO `user` VALUES ('21', '4', '4', '44', '4', '0.00', null, null, null, 
 INSERT INTO `user` VALUES ('22', '', '', '', '', '0.00', null, null, null, '1455440397', '1455440397', '', '0', null, '0.00');
 INSERT INTO `user` VALUES ('23', '&amp;lt;java script&amp;gt;', '13714584553', '1', '1', '0.00', null, null, null, '1455441705', '1455441705', '', '0', null, '0.00');
 INSERT INTO `user` VALUES ('24', '王小明', '13714581111', '', '', '0.00', null, null, null, '1455442179', '1455442179', '', '-1', null, '7.00');
+
+
+alter table `user` add COLUMN `project_description` text COMMENT '项目描述';

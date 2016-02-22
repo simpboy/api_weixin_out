@@ -51,7 +51,7 @@
             <div class="weixinBodybox renderClass">
                <div class="xgline" style="margin-bottom:5px;">
                     <span class="">项目描述</span>
-                    <div  class="description"><empty name="showContent">您还没有推荐项目,快去推荐吧<else />{$showContent}</empty></div>
+                    <div  class="description"><empty name="project_description">您还没有推荐项目,快去推荐吧<else />{$project_description}</empty></div>
                 </div>
             </div>
         </div>
@@ -72,7 +72,7 @@
                 <a href="{:U('Home/User/editUser',array('field'=>'company'))}">
                    <div class="xgline">
                         <span class="xgicon">公司</span>
-                        <span class="fright">
+                        <span class="fright" style="width:70%;">
                                 <empty name="company">未填写&nbsp;&gt;<else />
                                     {$company}&nbsp;&gt;
                                 </empty>
@@ -84,7 +84,7 @@
                 <a href="{:U('Home/User/editUser',array('field'=>'self_description'))}">
                    <div class="xgline">
                         <span class="xgicon">个性签名</span>
-                        <span class="fright">
+                        <span class="fright" style="width:70%;">
                                 <empty name="self_description">未填写&nbsp;&gt;<else />
                                     {$self_description}&nbsp;&gt;
                                 </empty>

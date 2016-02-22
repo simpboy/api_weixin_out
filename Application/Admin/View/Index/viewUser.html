@@ -22,6 +22,7 @@
                 <li><label>待发放金额</label><span class="asdfinput">{$userInfo.except_award_money|number_format=###,2}</span><i></i></li>
                 <li><label>注册时间</label><span class="asdfinput">{$userInfo.reg_time|date='Y-m-d H:i',###}</span><i></i></li>
                 <li><label>最后登录时间</label><span class="asdfinput">{$userInfo.last_login_time|date='Y-m-d H:i',###}</span></li>
+                <li><label>项目描述</label><textarea name="project_description" cols=""  rows="" class="textinput">{$userInfo.project_description}</textarea><i></i></li>
                 <li><label>性别</label><cite><input name="gender" <eq name="userInfo.gender" value="1">checked</eq> type="radio" value="1" checked="checked" />男&nbsp;&nbsp;&nbsp;&nbsp;<input name="gender" <eq name="userInfo.gender" value="0">checked</eq> type="radio" value="0" />女</cite></li>
                 <li><label>所在公司</label><input name="company" type="text" value="{$userInfo.company}" class="dfinput" /><i></i></li>
                 <li><label>简介</label><textarea name="self_description" cols=""  rows="" class="textinput">{$userInfo.self_description}</textarea><i></i></li>
