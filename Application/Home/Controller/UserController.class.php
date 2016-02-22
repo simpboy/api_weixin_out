@@ -207,21 +207,24 @@ class UserController extends Controller {
         if(!$userId){
             $this->error('您还未登录,不能进行该操作');
         }
+        $getField = I('get.field');
         if(IS_POST){
             $postData = I('post.');
+            $field = $postData['field'];
+            if(!in_array($postData['field'],array('gender','company','self_description'))){
+                $this->error('非法参数');
+            }
             $User = M('User');
             $postData = $User->create($postData);
             $where = array();
             $where['user_id'] = $userId;
 
             $data = array();
-            $data['gender'] = $postData['gender'];
-            $data['company'] = $postData['company'];
-            $data['self_description'] = $postData['self_description'];
-
+            $data[$field] = $postData[$field];
             $res = $User->where($where)->save($data);
             if($res!==false){
                 $this->success('信息修改成功',U('Home/User/showUser'));
+//                $this->redirect(U('Home/User/showUser'));
             }else{
                 $this->error('信息修改失败');
             }
@@ -230,6 +233,7 @@ class UserController extends Controller {
         $where = array();
         $where['user_id'] = $userId;
         $data = M('User')->where($where)->find();
+        $data['field'] = $getField;
         $this->assign($data);
         $this->assign('title','编辑用户信息');
         $this->display('editUser');
